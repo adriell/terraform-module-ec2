@@ -28,12 +28,12 @@ resource "aws_instance" "main" {
   ebs_optimized     = var.ebs_optimized
 
   tags = merge(
-    map("Name", "${var.instance_count > 1 ? format("%s-%d", var.name, count.index + 1) : var.name}"),
+    map("Name", var.instance_count > 1 ? format("%s-%d", var.name, count.index + 1) : var.name),
     var.tags
   )
 
   volume_tags = merge(
-    map("Name", "${var.instance_count > 1 ? format("%s-%d", var.name, count.index + 1) : var.name}"),
+    map("Name", var.instance_count > 1 ? format("%s-%d", var.name, count.index + 1) : var.name),
     var.tags
   )
 }
